@@ -38,3 +38,10 @@
   background-color: whitesmoke;
   color: black;
 }
+
+#contactList {
+  text-decoration: none;
+  list-style: none;
+  color: blue;
+  font-weight: bold;
+}

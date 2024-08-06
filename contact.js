@@ -1,21 +1,20 @@
 const button = document.querySelector("#addContactButton");
 
-button.addEventListener("click", () => {
-  addContact();
-});
+button.addEventListener("click", addContact);
 
 document
   .getElementById("addContactButton")
   .addEventListener("click", saveArray);
+
 let contact = [];
+document.addEventListener("DOMContentLoaded", () => {
+  loadContacts();
+});
 function addContact() {
   const contactNameInput = document.getElementById("contactNameInput");
   const contactPhoneInput = document.getElementById("contactPhoneInput");
   const contactName = contactNameInput.value;
   const contactPhone = contactPhoneInput.value;
-
-  //   console.log(contactPhoneInput.value);
-  //   console.log(contactNameInput.value);
 
   if (contactName && contactPhone) {
     const newContact = {
@@ -27,15 +26,30 @@ function addContact() {
     contactNameInput.value = "";
     contactPhoneInput.value = "";
   }
-
-  contact.push(contact);
-  contactNameInput.value = "";
-  contactPhoneInput.value = "";
-  // console.log(contact);
 }
 
 function saveArray() {
   const jsonString = JSON.stringify(contact);
   localStorage.setItem("myArray", jsonString);
   alert("Array saved to local storage!");
+  loadContacts();
+}
+
+function loadContacts() {
+  const savedContacts = localStorage.getItem("myArray");
+  if (savedContacts) {
+    contact = JSON.parse(savedContacts);
+    displayContacts();
+  }
+}
+
+function displayContacts() {
+  const contactList = document.getElementById("contactList");
+  contactList.innerHTML = "";
+
+  contact.forEach((contactItem) => {
+    const li = document.createElement("li");
+    li.textContent = `${contactItem.name}: ${contactItem.phone}`;
+    contactList.appendChild(li);
+  });
 }
