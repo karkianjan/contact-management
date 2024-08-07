@@ -49,7 +49,8 @@ function displayContacts() {
 
   contact.forEach((contactItem) => {
     const li = document.createElement("li");
-    li.textContent = `${contactItem.name}: ${contactItem.phone}`;
+    li.textContent = `ID:${contactItem.id}, Username:${contactItem.name}, Phone Number: ${contactItem.phone}`;
     contactList.appendChild(li);
   });
 }
+
