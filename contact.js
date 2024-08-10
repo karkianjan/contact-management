@@ -35,7 +35,7 @@ function addContact() {
 function saveArray() {
   const jsonString = JSON.stringify(contact);
   localStorage.setItem("myArray", jsonString);
-  alert("Array saved to local storage!");
+  // alert("Array saved to local storage!");
   loadContacts();
 }
 
