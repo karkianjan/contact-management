@@ -8,8 +8,8 @@
     <script src="contact.js" defer></script>
   </head>
   <body>
-    <div class="contactForm">
-      <h1>Contact Management System</h1>
+    <div id="contactForm">
+      <h1 id="formTitle">Contact Management System</h1>
       <br /><br />
 
       <input
@@ -22,17 +22,26 @@
         id="contactPhoneInput"
         placeholder="Enter a Contact Number"
       /><br /><br />
-      <button id="addContactButton">Click Me to add contact</button><br /><br />
+      <button id="addContactButton">Click Me to Add Contact</button><br /><br />
+
+      <table id="contactTable">
+        <thead>
+          <tr>
+            <th>Contact ID</th>
+            <th>Contact Name</th>
+            <th>Contact Number</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="contactTableBody"></tbody>
+      </table>
       <input
         type="text"
         id="contactSearch"
         placeholder="Enter contact name to search contact"
       /><br /><br />
-      <ul id="contactList">
-        Contact List
-      </ul>
       <br /><br />
-      <button id="deleteContactButton">Click Me To Delete Contact</button>
+      <button id="searchContactButton">Search Contact</button><br /><br />
     </div>
   </body>
 </html>

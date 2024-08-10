@@ -1,15 +1,19 @@
-const button = document.querySelector("#addContactButton");
+const addButton = document.querySelector("#addContactButton");
 
-button.addEventListener("click", addContact);
-
+addButton.addEventListener("click", addContact);
 document
   .getElementById("addContactButton")
   .addEventListener("click", saveArray);
 
+const searchButton = document.querySelector("#searchContactButton");
+searchButton.addEventListener("click", searchContact);
+
 let contact = [];
+
 document.addEventListener("DOMContentLoaded", () => {
   loadContacts();
 });
+
 function addContact() {
   const contactNameInput = document.getElementById("contactNameInput");
   const contactPhoneInput = document.getElementById("contactPhoneInput");
@@ -44,13 +48,85 @@ function loadContacts() {
 }
 
 function displayContacts() {
-  const contactList = document.getElementById("contactList");
-  contactList.innerHTML = "";
+  const contactTableBody = document.getElementById("contactTableBody");
+  contactTableBody.innerHTML = "";
 
   contact.forEach((contactItem) => {
-    const li = document.createElement("li");
-    li.textContent = `ID:${contactItem.id}, Username:${contactItem.name}, Phone Number: ${contactItem.phone}`;
-    contactList.appendChild(li);
+    const row = document.createElement("tr");
+
+    const idCell = document.createElement("td");
+    idCell.textContent = contactItem.id;
+
+    const nameCell = document.createElement("td");
+    nameCell.textContent = contactItem.name;
+
+    const phoneCell = document.createElement("td");
+    phoneCell.textContent = contactItem.phone;
+
+    const actionCell = document.createElement("td");
+    const deleteButton = document.createElement("button");
+    deleteButton.id = `deleteContactButton-${contactItem.id}`;
+
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", () => {
+      deleteContact(contactItem.id);
+    });
+    actionCell.appendChild(deleteButton);
+
+    row.appendChild(idCell);
+    row.appendChild(nameCell);
+    row.appendChild(phoneCell);
+    row.appendChild(actionCell);
+
+    contactTableBody.appendChild(row);
   });
 }
 
+function deleteContact(id) {
+  contact = contact.filter((contactItem) => contactItem.id !== id);
+  saveArray();
+  alert("Contact deleted");
+  displayContacts();
+}
+
+function searchContact() {
+  const searchInput = document
+    .getElementById("contactSearch")
+    .value.toLowerCase();
+  const filteredContacts = contact.filter((contactItem) =>
+    contactItem.name.toLowerCase().includes(searchInput)
+  );
+
+  const contactTableBody = document.getElementById("contactTableBody");
+  contactTableBody.innerHTML = "";
+
+  filteredContacts.forEach((contactItem) => {
+    const row = document.createElement("tr");
+
+    const idCell = document.createElement("td");
+    idCell.textContent = contactItem.id;
+
+    const nameCell = document.createElement("td");
+    nameCell.textContent = contactItem.name;
+
+    const phoneCell = document.createElement("td");
+    phoneCell.textContent = contactItem.phone;
+
+    const actionCell = document.createElement("td");
+    const deleteButton = document.createElement("button");
+    deleteButton.id = `deleteContactButton-${contactItem.id}`;
+
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", () => {
+      deleteContact(contactItem.id);
+    });
+    actionCell.appendChild(deleteButton);
+
+    row.appendChild(idCell);
+    row.appendChild(nameCell);
+    row.appendChild(phoneCell);
+    row.appendChild(actionCell);
+
+    contactTableBody.appendChild(row);
+  });
+}

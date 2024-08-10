@@ -3,36 +3,35 @@
   padding: 0;
 }
 
-.contactForm {
+#contactForm {
   padding-top: 100px;
   flex-direction: column;
   align-items: center;
   display: flex;
 }
-.contactForm input:nth-child(4) {
+
+#contactForm input[type="text"] {
   width: 300px;
   padding: 10px;
   font-size: 16px;
-}
-.contactForm input:nth-child(7) {
-  width: 300px;
-  padding: 10px;
-  font-size: 16px;
-}
-.contactForm input:nth-child(13) {
-  width: 300px;
-  padding: 10px;
-  font-size: 16px;
+  margin-bottom: 15px;
 }
 
-#addContactButton {
+#addContactButton,
+#searchContactButton,
+#deleteContactButton {
   height: 3rem;
-  font-weight: bold;
   width: 10rem;
-  background-color: blue;
+  font-weight: bold;
   color: whitesmoke;
   border: none;
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+#addContactButton {
+  background-color: blue;
 }
 
 #addContactButton:hover {
@@ -40,21 +39,17 @@
   color: black;
 }
 
-#contactList {
-  text-decoration: none;
-  list-style: none;
-  color: blue;
-  font-weight: bold;
+#searchContactButton {
+  background-color: green;
+}
+
+#searchContactButton:hover {
+  background-color: whitesmoke;
+  color: black;
 }
 
 #deleteContactButton {
-  height: 3rem;
-  width: 10rem;
   background-color: orange;
-  font-weight: bold;
-  color: whitesmoke;
-  border: none;
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 10px rgba(0, 0, 0, 0.1);
 }
 
 #deleteContactButton:hover {
@@ -62,3 +57,20 @@
   color: black;
 }
 
+table {
+  border-collapse: collapse;
+  width: 50%;
+  margin-inline: auto;
+  align-items: center;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #d6eeee;
+}
