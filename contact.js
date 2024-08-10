@@ -62,10 +62,9 @@ function displayContacts() {
 
     const phoneCell = document.createElement("td");
     phoneCell.textContent = contactItem.phone;
-
     const actionCell = document.createElement("td");
     const deleteButton = document.createElement("button");
-    deleteButton.id = `deleteContactButton-${contactItem.id}`;
+    deleteButton.id = `deleteContactButton_contactId_${contactItem.id}`;
 
     deleteButton.textContent = "Delete";
     deleteButton.addEventListener("click", () => {
